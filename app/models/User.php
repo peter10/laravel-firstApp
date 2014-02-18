@@ -17,7 +17,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      *
      * @var array
      */
-    protected $hidden = array('password');
+    //protected $hidden = array('password');
+    
+    protected $fillable = array('name', 'email', 'password');
 
     public function colours() {
         return $this->belongsToMany('Colour');
@@ -48,6 +50,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      */
     public function getReminderEmail() {
         return $this->email;
+    }
+        
+    public static function validate($input) {
+        
+         $rules = array(
+                'name' => 'Required|Min:3|Max:80|Alpha',
+                'email' => 'Email|Unique:users',
+                'password' => 'Required|Min:6|Max:80'
+                
+        );
+
+        return Validator::make($input, $rules);
     }
 
 }

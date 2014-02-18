@@ -1,0 +1,25 @@
+
+@import url('//fonts.googleapis.com/css?family=Open+Sans|Oswald:400,700');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2 {
+    font-family: Oswald, sans-serif;
+}
+
+ul#nav {
+}
+
+.colourSwath {
+    width: 1em;
+    height: 1em;
+}
+span.colourSwath {
+    display: inline-block;
+}
+
+td, th {
+    padding: 5px;
+}

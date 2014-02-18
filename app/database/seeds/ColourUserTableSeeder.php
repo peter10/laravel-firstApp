@@ -16,13 +16,15 @@ class ColourUserTableSeeder extends Seeder {
     public function run()
     {
         DB::table('colour_user')->delete();
-
-        Colour::create(array('name' => 'green', 'hex_code' => '00ff00'));
-        Colour::create(array('name' => 'yellow', 'hex_code' => 'ffff00'));
         
-        $colour1 = Colour::first()->id;
-        $user1 = User::first()->id;
-        
-        DB::table('colour_user')->insert(array('user_id' => $user1, 'colour_id' => $colour1));
+        $i = 0;
+        foreach( User::all() as $user ) {
+        $j = $i;
+        foreach( Colour::all() as $colour ) {
+            DB::table('colour_user')->insert(array('user_id' => $user->id, 'colour_id' => $colour->id));
+            if (++$j > 3) break;
+        }
+        $i+=2;
+        }
     }
 }
