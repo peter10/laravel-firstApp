@@ -10,7 +10,7 @@
             <td>{{{ $colour->id }}}</td>
             <td>{{{ $colour->name }}}</td>
             <td>{{{ $colour->hex_code }}}</td>
-            <td><div style="background-color: #{{{ $colour->hex_code }}}" class="colourSwath"></div></td>
+            <td><div style="background-color: #{{{ $colour->hex_code }}}" class="colourSwatch"></div></td>
             <td>{{ link_to_route('colour.delete', 'Delete', array('id' => $colour->id)) }}</td>
         </tr>
     @endforeach

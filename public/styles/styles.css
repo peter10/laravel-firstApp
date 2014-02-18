@@ -12,11 +12,11 @@ h1, h2 {
 ul#nav {
 }
 
-.colourSwath {
+.colourSwatch {
     width: 1em;
     height: 1em;
 }
-span.colourSwath {
+span.colourSwatch {
     display: inline-block;
 }
 
