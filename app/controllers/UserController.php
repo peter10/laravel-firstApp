@@ -1,5 +1,6 @@
 <?php
 
+use FirstApp\Captcha\Helper as Captcha;
 /**
  * Description of UserController
  *
@@ -21,6 +22,13 @@ class UserController extends BaseController {
 
     public function postRegister() {
         $v = User::validate(Input::all());
+        // check captcha separately
+        if (!Captcha::validate()) {
+            Input::flash();
+            // add captcha validation messge to message bag
+            $v->messages()->add(Captcha::RESPONSE_FIELD, Captcha::ERROR_MESSAGE);
+            return Redirect::to('users/register')->withErrors($v);
+        }
         if ($v->passes()) {
             $hashedPass = Hash::make(Input::get('password'));
             $user = User::create(array_merge(Input::only('name', 'email'), array('password' => $hashedPass)));
@@ -49,11 +57,10 @@ class UserController extends BaseController {
     public function postLogin() {
         $data = array(Input::only('email', 'password'));
         if (Auth::attempt(Input::only('email', 'password'))) {
-        //if (Auth::attempt(array('email' => 'foo@foo.foo', 'password' => 'password'))) {
             return Redirect::to('/');
         } else {
             Input::flash();
-            return Redirect::to('users/login');
+            return Redirect::to('users/login')->withErrors('Login failed');
         }
     }
 

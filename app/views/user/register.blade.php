@@ -35,6 +35,10 @@
         </ul>
     </li>
 
+    <li>
+        {{ FirstApp\Captcha\Helper::input(); }}
+    </li>
+
 
     <li>
         {{ Form::submit('Submit', array('class' => 'btn')) }}
