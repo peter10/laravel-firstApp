@@ -47,8 +47,8 @@
 {{ Form::close() }}
 
 @if ($errors->any())
-<ul>
-    {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+<ul class="error">
+    {{ implode('', $errors->all('<li>:message</li>')) }}
 </ul>
 @endif
 

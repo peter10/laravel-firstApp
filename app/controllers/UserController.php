@@ -1,6 +1,7 @@
 <?php
 
 use FirstApp\Captcha\Helper as Captcha;
+
 /**
  * Description of UserController
  *
@@ -55,12 +56,16 @@ class UserController extends BaseController {
     }
 
     public function postLogin() {
-        $data = array(Input::only('email', 'password'));
-        if (Auth::attempt(Input::only('email', 'password'))) {
+        $v = User::validateLogin(Input::all());
+        if (!$v->passes()) {
+            Input::flash();
+            return Redirect::to('users/login')->withErrors($v);
+        } elseif (Auth::attempt(Input::only('email', 'password'))) {
             return Redirect::to('/');
         } else {
             Input::flash();
-            return Redirect::to('users/login')->withErrors('Login failed');
+            $v->messages()->add('login_error', 'Password incorrect');
+            return Redirect::to('users/login')->withErrors($v);
         }
     }
 
