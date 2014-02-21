@@ -24,6 +24,7 @@
             <li>{{ link_to_route('colour.index', 'Colours') }}</li>
             @if(Auth::check())
             <li>{{ link_to_route('user.logout', 'Logout') }}</li>
+            <li>{{ link_to_route('user.delete', 'Delete Account') }}</li>
             @else
             <li>{{ link_to_route('user.create', 'Register') }}</li>
             <li>{{ link_to_route('user.login', 'Login') }}</li>

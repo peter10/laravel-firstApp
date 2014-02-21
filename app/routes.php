@@ -17,8 +17,10 @@ Route::post('users/login', array('as' => 'user.login.post', 'uses' => 'UserContr
 
 Route::get('users/logout', array('as' => 'user.logout', 'uses' => 'UserController@logout'));
 
+Route::get('users/delete/{id}', array('as' => 'user.delete', 'uses' => 'UserController@delete'));
+
 Route::get('colours', array('as' => 'colour.index', 'uses' => 'ColourController@index'));
 
-Route::post('colours/new', array('as' => 'colour.create', 'uses' => 'ColourController@postColour'));
+Route::post('colours/new', array('as' => 'colour.create', 'before' => 'auth', 'uses' => 'ColourController@postColour'));
 
-Route::any('colours/delete/{id}', array('as' => 'colour.delete', 'uses' => 'ColourController@deleteColour'));
+Route::any('colours/delete/{id}', array('as' => 'colour.delete', 'before' => 'auth', 'uses' => 'ColourController@deleteColour'));

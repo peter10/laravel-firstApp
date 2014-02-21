@@ -24,11 +24,11 @@
 
     <li>
         {{ Form::label('colours', 'Favourite Colours:') }}
-        <ul>
+        <ul class="colours">
             @foreach($colours as $colour)
             <li>
-                {{ Form::checkbox('colours[]', $colour->id, false, array('id' => 'colours_' . $colour->name)) }}
-                {{ Form::label('colours_' . $colour->name, $colour->name) }}
+                {{ Form::checkbox('colours[]', $colour->id, false, array('id' => 'colours-' . $colour->name)) }}
+                {{ Form::label('colours-' . $colour->name, $colour->name) }}
                 <span style="background-color: #{{{ $colour->hex_code }}}" class="colourSwatch"></span>
             </li>
             @endforeach

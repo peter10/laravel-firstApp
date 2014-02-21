@@ -2,11 +2,6 @@
 
 use FirstApp\Captcha\Helper as Captcha;
 
-/**
- * Description of UserController
- *
- * @author user1
- */
 class UserController extends BaseController {
 
     public function index() {
@@ -45,9 +40,11 @@ class UserController extends BaseController {
             return Redirect::to('users/register')->withErrors($v);
         }
     }
-
-    public function delete($id) {
-        User::destroy($id);
+    
+    public function delete() {
+        if (Auth::check()) {
+            User::destroy(Auth::user()->id);
+        }
         return Redirect::to('users');
     }
 
