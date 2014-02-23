@@ -5,7 +5,7 @@ use FirstApp\Captcha\Helper as Captcha;
 class UserController extends BaseController {
 
     public function index() {
-        return View::make('user.index', array('users' => User::all(), 'colours' => Colour::all()));
+        return View::make('user.index', array('users' => User::all()));
     }
 
     public function register() {
